@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modul5_task7/amazon.dart';
+import 'package:modul5_task7/dwed.dart';
 import 'package:modul5_task7/facebook.dart';
 import 'package:modul5_task7/facebook_minyu.dart';
 import 'package:modul5_task7/instagram.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modul5_task7/amazon.dart';
+import 'package:modul5_task7/dwed.dart';
 import 'package:modul5_task7/facebook.dart';
 import 'package:modul5_task7/facebook_minyu.dart';
 import 'package:modul5_task7/instagram.dart';
@@ -67,7 +68,6 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
-                   
                     fixedSize: const Size(300, 50),
                   ),
                   child: const Text(
@@ -92,7 +92,6 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.black,
-                    
                     fixedSize: const Size(300, 50),
                   ),
                   child: const Text(
@@ -117,13 +116,36 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.amber,
-                    
                     fixedSize: const Size(300, 50),
                   ),
                   child: const Text(
                     "amazon",
                     style: TextStyle(
                       color: Colors.red,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              SlideTransition(
+                position: _animation3,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const DWED(),
+                      ),
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    fixedSize: const Size(300, 50),
+                  ),
+                  child: const Text(
+                    "DWED",
+                    style: TextStyle(
+                      color: Colors.blue,
                       fontSize: 18,
                     ),
                   ),
