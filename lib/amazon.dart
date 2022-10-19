@@ -12,7 +12,7 @@ class Amazon extends StatelessWidget {
         drawer: const Drawer(),
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
+             SliverAppBar(
               pinned: true,
               floating: true,
               snap: true,
@@ -42,13 +42,12 @@ class Amazon extends StatelessWidget {
             ),
             SliverPersistentHeader(
               pinned: true,
-              floating: true,
+              floating: false,
               delegate: TexTField(),
             ),
             SliverPersistentHeader(
               //  pinned: true,
               // floating: false,
-
               delegate: botTom(),
             ),
             SliverList(
@@ -56,7 +55,7 @@ class Amazon extends StatelessWidget {
                 [
                   Expanded(
                     child: Container(
-                      color: Color.fromARGB(255, 223, 223, 223),
+                      color: const Color.fromARGB(255, 223, 223, 223),
                       child: Stack(
                         children: [
                           Column(
@@ -251,25 +250,37 @@ class Amazon extends StatelessWidget {
                                     const EdgeInsets.only(top: 10, bottom: 10),
                                 child: Container(
                                   color: Colors.white,
-                                  height: 420,
+                                  height: 440,
                                   width: double.infinity,
-                                  padding: const EdgeInsets.only(right: 10,left: 10),
+                                  padding: const EdgeInsets.only(
+                                      right: 10, left: 10),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Text("Top products in Camera",style: TextStyle(color: Colors.black,fontSize: 20),),
+                                      const SizedBox(height: 10),
+                                      const Text(
+                                        "Top products in Camera",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 20),
+                                      ),
+                                      const SizedBox(height: 6),
                                       Expanded(
                                         child: Row(
                                           children: [
-                                            Expanded(child: Image.asset("assets/images/kompyuter.jpg",fit: BoxFit.cover,))
+                                            Expanded(
+                                                child: Image.asset(
+                                              "assets/images/kompyuter.jpg",
+                                              fit: BoxFit.cover,
+                                            ))
                                           ],
                                         ),
                                       ),
                                       Expanded(
                                         child: Row(
                                           children: [
-                                              Expanded(
+                                            Expanded(
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
@@ -305,9 +316,6 @@ class Amazon extends StatelessWidget {
                 ],
               ),
             ),
-            // SliverPersistentHeader(
-            //   delegate: stack(),
-            // ),
           ],
         ),
       ),
@@ -369,6 +377,7 @@ class TexTField extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
+      height: 66,
       color: const Color.fromARGB(255, 12, 129, 151),
       child: const Padding(
         // padding: EdgeInsets.all(20),
@@ -402,7 +411,7 @@ class TexTField extends SliverPersistentHeaderDelegate {
 
   @override
   // TODO: implement minExtent
-  double get minExtent => 46;
+  double get minExtent => 66;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

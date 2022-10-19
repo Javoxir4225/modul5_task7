@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Facebook extends StatefulWidget {
   const Facebook({super.key});
@@ -9,6 +10,27 @@ class Facebook extends StatefulWidget {
 
 class _FacebookState extends State<Facebook>
     with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  AnimationStatus _animationStatus = AnimationStatus.dismissed;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1500),
+    );
+    _animation = Tween(begin: 2.0, end: 0.0).animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        _animationStatus = status;
+      });
+
+    super.initState();
+  }
+
   int sum = 0;
   bool _setlokol = true;
   @override
@@ -21,7 +43,7 @@ class _FacebookState extends State<Facebook>
             SliverAppBar(
               elevation: 0,
               backgroundColor: Colors.black,
-              // pinned: true,
+              pinned: true,
               floating: true,
               snap: true,
               title: const Text(
@@ -49,51 +71,12 @@ class _FacebookState extends State<Facebook>
                 ),
               ],
             ),
-            SliverAppBar(
-              elevation: 0,
-              backgroundColor: Colors.black,
-              // toolbarHeight: 60,
-              snap: true,
-              floating: true,
+            SliverPersistentHeader(
+              delegate: Tab_Bar(),
+
+            
+              floating: false,
               pinned: true,
-              title: Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 25,
-                    backgroundImage: AssetImage("assets/images/foto1.jpg"),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: SizedBox(
-                      height: 40,
-                      child: TextField(
-                        textDirection: TextDirection.ltr,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                        decoration: InputDecoration(
-                          hoverColor: Colors.grey,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          focusColor: Colors.grey,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 16),
-                          fillColor: Colors.black,
-                          // iconColor: Colors.grey,
-                          filled: true,
-                          hintText: "What's on your mind?",
-                          hintStyle: const TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
             SliverPersistentHeader(
               delegate: SliverTabBar(),
@@ -414,48 +397,112 @@ class _FacebookState extends State<Facebook>
   }
 }
 
+class Tab_Bar extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.black,
+      
+      height: 66,
+      child: Row(
+        children: [
+          const CircleAvatar(
+            radius: 25,
+            backgroundImage: AssetImage("assets/images/foto1.jpg"),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: SizedBox(
+              height: 40,
+              child: TextField(
+                textDirection: TextDirection.ltr,
+                style: const TextStyle(
+                  color: Colors.grey,
+                ),
+                decoration: InputDecoration(
+                  hoverColor: Colors.grey,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                  focusColor: Colors.grey,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(color: Colors.grey),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  fillColor: Colors.black,
+                  // iconColor: Colors.grey,
+                  filled: true,
+                  hintText: "What's on your mind?",
+                  hintStyle: const TextStyle(color: Colors.grey),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => 66;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => 66;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
+}
 
 class SliverTabBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _getTab(
-            Icons.video_call,
-            Colors.red,
-            "Live",
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: VerticalDivider(
-              thickness: 1,
-              color: Colors.grey,
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        
+        padding: const EdgeInsets.only(left: 8, right: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _getTab(
+              Icons.video_call,
+              Colors.red,
+              "Live",
             ),
-          ),
-          _getTab(
-            Icons.photo,
-            Colors.green,
-            "Photo",
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: VerticalDivider(
-              thickness: 1,
-              color: Colors.grey,
-              width: 8,
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: VerticalDivider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          _getTab(
-            Icons.location_on,
-            Colors.red,
-            "Chack in",
-          ),
-        ],
+            _getTab(
+              Icons.photo,
+              Colors.green,
+              "Photo",
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: VerticalDivider(
+                thickness: 1,
+                color: Colors.grey,
+                width: 8,
+              ),
+            ),
+            _getTab(
+              Icons.location_on,
+              Colors.red,
+              "Chack in",
+            ),
+          ],
+        ),
       ),
     );
   }

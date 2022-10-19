@@ -1,7 +1,10 @@
 
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modul5_task7/CHERNOVEK.dart';
 import 'package:modul5_task7/amazon.dart';
 import 'package:modul5_task7/dwed.dart';
 import 'package:modul5_task7/facebook.dart';

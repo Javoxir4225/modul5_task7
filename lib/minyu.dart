@@ -17,6 +17,7 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
   late Animation<Offset> _animation;
   late Animation<Offset> _animation2;
   late Animation<Offset> _animation3;
+  late Animation<Offset> _animation4;
 
   @override
   void initState() {
@@ -38,6 +39,12 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
     );
     _animation3 = Tween(
       begin: const Offset(-1.0, 1.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+    _animation4 = Tween(
+      begin: const Offset(1.0, -1.0),
       end: const Offset(0.0, 0.0),
     ).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
@@ -129,7 +136,7 @@ class _MinyuState extends State<Minyu> with SingleTickerProviderStateMixin {
               ),
               const SizedBox(height: 12),
               SlideTransition(
-                position: _animation3,
+                position: _animation4,
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
