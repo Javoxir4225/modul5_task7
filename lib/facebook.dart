@@ -404,7 +404,7 @@ class Tab_Bar extends SliverPersistentHeaderDelegate {
     return Container(
       color: Colors.black,
       
-      height: 66,
+      height: 100,
       child: Row(
         children: [
           const CircleAvatar(
@@ -447,7 +447,7 @@ class Tab_Bar extends SliverPersistentHeaderDelegate {
 
   @override
   // TODO: implement maxExtent
-  double get maxExtent => 66;
+  double get maxExtent => 100;
 
   @override
   // TODO: implement minExtent

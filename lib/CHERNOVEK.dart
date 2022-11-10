@@ -61,6 +61,9 @@ class _ChernovekState extends State<Chernovek> {
                   });
                 }),
               ),
+              RadioListTile(value: 0, groupValue: 0, onChanged: ((value) {
+                
+              })),
             ],
           ),
         ),

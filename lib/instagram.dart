@@ -159,7 +159,7 @@ class _MyInstagramState extends State<MyInstagram> {
                   backgroundImage: AssetImage(images2),
                 ),
                 const SizedBox(width: 8),
-                Text(
+                Text( 
                   text1,
                   style: TextStyle(color: Colors.grey),
                 ),
